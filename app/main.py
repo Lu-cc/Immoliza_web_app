@@ -9,3 +9,4 @@ app = FastAPI()
 def health():
     return {"message": "Server is Running"}
 
+print('this is an update inside dev')
