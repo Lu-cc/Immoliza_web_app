@@ -5,14 +5,7 @@ from typing import Union
 app = FastAPI()
 
 
-@app.get("/home")
-def predict():
-    return {"prediction": "float", "status_code": "int"}
+@app.get("/")
+def health():
+    return {"message": "Server is Running"}
 
-
-@app.post("/predict")
-def predict():
-    return {"prediction": "float", "status_code": "int"}
-
-
-print("hello")
