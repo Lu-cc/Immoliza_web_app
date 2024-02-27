@@ -1,8 +1,13 @@
 # Import modules
-from fastapi import FastAPI
-from typing import Union
+from fastapi import FastAPI, HTTPException
+from typing import Optional
+from pydantic import BaseModel
 
 app = FastAPI()
+
+
+def predict():
+    return predict
 
 
 @app.get("/")
@@ -11,11 +16,12 @@ def health():
 
 
 @app.post("/predict")
-def prediction_calculator(property_data: Property):
+def prediction_calculator(property_data):
     try:
         prediction = predict(property_data.dict())
         return prediction
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-print('this is an update inside dev')
+
+print("this is an update inside dev")

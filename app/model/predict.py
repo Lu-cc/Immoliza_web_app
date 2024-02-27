@@ -20,7 +20,7 @@ def predict(input_dataset, output_dataset):
     ### -------------------------------------------------- ###
 
     # Load the model artifacts using joblib
-    artifacts = joblib.load("artifacts_lasso.joblib")
+    artifacts = joblib.load("artifacts.joblib")
 
     # Unpack the artifacts
     num_features = artifacts["features"]["num_features"]

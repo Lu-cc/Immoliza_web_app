@@ -12,7 +12,7 @@ from sklearn.preprocessing import StandardScaler
 def train():
     """Trains a linear regression model on the full dataset and stores output."""
     # Load the data
-    data = pd.read_csv("properties.csv")
+    data = pd.read_csv("app/model/properties.csv")
 
     # Define features to use
     num_features = [
