@@ -4,19 +4,30 @@ import pandas as pd
 
 
 @click.command()
-@click.option("-i", "--input-dataset", help="path to input .csv dataset", required=True)
 @click.option(
-    "-o",
-    "--output-dataset",
-    default="output/predictions.csv",
-    help="full path where to store predictions",
+    "-a", "--living-area", type=float, help="Living area of the house", required=True
+)
+@click.option(
+    "-e",
+    "--energy-consumption",
+    type=float,
+    help="Energy consumption of the house",
     required=True,
 )
-def predict(input_dataset, output_dataset):
+@click.option(
+    "-m",
+    "--model-path",
+    default="artifacts.joblib",
+    help="Path to the trained model",
+    required=True,
+)
+def predict(living_area, energy_consumption, model_path):
     """Predicts house prices from 'input_dataset', stores it to 'output_dataset'."""
     ### -------- DO NOT TOUCH THE FOLLOWING LINES -------- ###
     # Load the data
-    data = pd.read_csv(input_dataset)
+    data = pd.DataFrame(
+        {"living_area": [living_area], "energy_consumption": [energy_consumption]}
+    )
     ### -------------------------------------------------- ###
 
     # Load the model artifacts using joblib
@@ -24,10 +35,10 @@ def predict(input_dataset, output_dataset):
 
     # Unpack the artifacts
     num_features = artifacts["features"]["num_features"]
-    #fl_features = artifacts["features"]["fl_features"]
-    #cat_features = artifacts["features"]["cat_features"]
+    # fl_features = artifacts["features"]["fl_features"]
+    # cat_features = artifacts["features"]["cat_features"]
     imputer = artifacts["imputer"]
-    #enc = artifacts["enc"]
+    # enc = artifacts["enc"]
     model = artifacts["model"]
     scaler = artifacts["scaler"]
 
@@ -37,7 +48,7 @@ def predict(input_dataset, output_dataset):
     # Apply imputer and encoder on data
     data[num_features] = scaler.transform(data[num_features])
     data[num_features] = imputer.transform(data[num_features])
-    #data_cat = enc.transform(data[cat_features]).toarray()
+    # data_cat = enc.transform(data[cat_features]).toarray()
 
     # Combine the numerical and one-hot encoded categorical columns
     # data = pd.concat(
@@ -54,11 +65,10 @@ def predict(input_dataset, output_dataset):
 
     ### -------- DO NOT TOUCH THE FOLLOWING LINES -------- ###
     # Save the predictions to a CSV file (in order of data input!)
-    pd.DataFrame({"predictions": predictions}).to_csv(output_dataset, index=False)
-
+    # pd.DataFrame({"predictions": predictions}).to_csv(output_dataset, index=False)
+    click.echo(f"Predicted house price: {predictions[0]}")
     # Print success messages
     click.echo(click.style("Predictions generated successfully!", fg="green"))
-    click.echo(f"Saved to {output_dataset}")
     click.echo(
         f"Nbr. observations: {data.shape[0]} | Nbr. predictions: {predictions.shape[0]}"
     )
