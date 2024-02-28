@@ -21,10 +21,10 @@ def predict(input_data):
     model = artifacts["model"]
 
     data[num_features] = imputer.transform(data[num_features])
-    data_cat = enc.transform(data[cat_features]).toarray()
+    data[cat_features] = enc.transform(data[cat_features]).toarray()
 
     # Extract the used data
-    data = data[num_features]
+    data = data[num_features + fl_features + cat_features]
 
     # Make predictions
     predictions = model.predict(data)

@@ -15,23 +15,19 @@ def train():
 
     # Define features to use
     num_features = [
+        "nbr_bedrooms",
         "total_area_sqm",
-        #"nbr_bedrooms",
-        # "latitude",
-        # "longitude",
-        #"zip_code",
+        #"latitude",
+        #"longitude",
+        "zip_code",
         "primary_energy_consumption_sqm",
-        #"surface_land_sqm",
+        "surface_land_sqm",
     ]
-    fl_features = []
-    #     "fl_garden", 
-    #     "fl_terrace", 
-    #     "fl_swimming_pool", 
-    #     "fl_floodzone"]
-    cat_features = [] # "property_type"
+    fl_features = ["fl_garden", "fl_terrace", "fl_swimming_pool", "fl_floodzone"]
+    cat_features = ["property_type"]
 
     # Split the data into features and target
-    X = data[num_features] # + fl_features + cat_features]
+    X = data[num_features + fl_features + cat_features]
     y = data["price"]
 
     # Split the data into training and testing sets
@@ -46,7 +42,7 @@ def train():
     X_test[num_features] = imputer.transform(X_test[num_features])
 
     # Convert categorical columns with one-hot encoding using OneHotEncoder
-    enc = OneHotEncoder()
+    enc = OneHotEncoder() #handle_unknown="ignore")
     enc.fit(X_train[cat_features])
     X_train_cat = enc.transform(X_train[cat_features]).toarray()
     X_test_cat = enc.transform(X_test[cat_features]).toarray()
