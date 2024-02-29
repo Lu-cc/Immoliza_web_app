@@ -23,7 +23,7 @@ primary_energy_consumption_sqm = st.number_input('Primary Energy Consumption', m
 # When the 'Predict' button is clicked
 if st.button('Predict the property price'):
     # The API endpoint URL
-    url = 'http://localhost:8000/predict'
+    url = 'https://immoliza-web-app.onrender.com/predict'
     
     # The data to be sent to the API
     input_data = {
