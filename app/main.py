@@ -2,7 +2,7 @@
 from fastapi import FastAPI, HTTPException
 from typing import Optional
 from pydantic import BaseModel
-from app.model.predict import predict
+from model.predict import predict
 
 app = FastAPI()
 
@@ -26,4 +26,4 @@ def prediction_calculator(input_data: InputData):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-print("this is an update inside dev")
+print("this is an update inside ss dev")
