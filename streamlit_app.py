@@ -17,7 +17,7 @@ fl_garden = st.checkbox("Garden")
 fl_terrace = st.checkbox("Terrace")
 fl_swimming_pool = st.checkbox("Swimming Pool")
 fl_floodzone = st.checkbox("Flood Zone")
-property_type = st.selectbox("Property Type", ["Apartment", "House"])
+property_type = st.selectbox("Property Type", ["apartment", "house"])
 
 # When the 'Predict' button is clicked
 if st.button("Predict the property price"):

@@ -42,7 +42,7 @@ def train():
     X_test[num_features] = imputer.transform(X_test[num_features])
 
     # Convert categorical columns with one-hot encoding using OneHotEncoder
-    enc = OneHotEncoder() #handle_unknown="ignore")
+    enc = OneHotEncoder(handle_unknown="ignore")
     enc.fit(X_train[cat_features])
     X_train_cat = enc.transform(X_train[cat_features]).toarray()
     X_test_cat = enc.transform(X_test[cat_features]).toarray()

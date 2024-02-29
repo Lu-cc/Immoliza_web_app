@@ -24,8 +24,8 @@ app = FastAPI()
 #         'property_type': property_type
 #         }
 class PropertyType(str, Enum):
-    house = "House"
-    apartment = "Apartment"
+    house = "house"
+    apartment = "apartment"
 
 
 class InputData(BaseModel):
@@ -38,8 +38,8 @@ class InputData(BaseModel):
     fl_terrace: Optional[bool]
     fl_swimming_pool: Optional[bool]
     fl_floodzone: Optional[bool]
-    property_type: PropertyType
-
+    property_type: str = None
+ 
 
 @app.get("/")
 def health():
