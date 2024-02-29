@@ -1,8 +1,15 @@
 # Import modules
-from fastapi import FastAPI
-from typing import Union
+from fastapi import FastAPI, HTTPException
+from typing import Optional
+from pydantic import BaseModel
+from app.model.predict import predict
 
 app = FastAPI()
+
+
+class InputData(BaseModel):
+    total_area_sqm: int
+    primary_energy_consumption_sqm: int
 
 
 @app.get("/")
@@ -11,11 +18,12 @@ def health():
 
 
 @app.post("/predict")
-def prediction_calculator(property_data: Property):
+def prediction_calculator(input_data: InputData):
     try:
-        prediction = predict(property_data.dict())
-        return prediction
+        prediction = predict(input_data.dict())
+        return {"predicted_price": prediction}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-print('this is an update inside dev')
+
+print("this is an update inside dev")
