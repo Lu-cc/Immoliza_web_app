@@ -10,14 +10,14 @@ import os
 def predict(input_data):
     """Predicts house prices from input data."""
     # Load the trained model
-
+    print(os.getcwd())
     # this_directory= os.path.dirname('app/model/predict.py')
     # sys.path.append(os.path.join(this_directory, 'app/model/train.py'))
 
-    artifacts = joblib.load("artifacts.joblib")
+    artifacts = joblib.load("/code/app/model/artifacts.joblib")
     print(artifacts)
     # Prepare the input data
-    data = pd.DataFrame(input_data, index=[0])
+    data = pd.DataFrame(input_data, index = [0])
     
     num_features = artifacts["features"]["num_features"]
     fl_features = artifacts["features"]["fl_features"]
@@ -47,23 +47,23 @@ def predict(input_data):
 
 
 if __name__ == "__main__":
-    pass
+    #pass
     #For testing purposes
-#     dummy = {"property_type": "HOUSE",
-#   "latitude": 0,
-#   "longitude": 0,
-#   "region": "Flanders",
-#   "zip_code": 0,
-#   "locality": "Roeselare",
-#   "subproperty_type": "MIXED_USE_BUILDING",
-#   "total_area_sqm": 0,
-#   "nbr_bedrooms": 0,
-#   "primary_energy_consumption_sqm": 0,
-#   "construction_year": 0,
-#   "fl_garden": True,
-#   "fl_terrace": True,
-#   "fl_swimming_pool": True,
-#   "fl_floodzone": True}
+    dummy = {"property_type": "HOUSE",
+  "latitude": 0,
+  "longitude": 0,
+  "region": "Flanders",
+  "zip_code": 0,
+  "locality": "Roeselare",
+  "subproperty_type": "MIXED_USE_BUILDING",
+  "total_area_sqm": 0,
+  "nbr_bedrooms": 0,
+  "primary_energy_consumption_sqm": 0,
+  "construction_year": 0,
+  "fl_garden": True,
+  "fl_terrace": True,
+  "fl_swimming_pool": True,
+  "fl_floodzone": True}
 
-#     prediction = predict(dummy)
-#     print("Predicted house price:", prediction)
+    prediction = predict(dummy)
+    print("Predicted house price:", prediction)

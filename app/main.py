@@ -77,5 +77,27 @@ def prediction_calculator(input_data: InputData):
         raise HTTPException(status_code=500, detail=str(e))
     
 
+if __name__ == "__main__":
+    pass
+    #For testing purposes
+#     dummy = {"property_type": "HOUSE",
+#   "latitude": 0,
+#   "longitude": 0,
+#   "region": "Flanders",
+#   "zip_code": 0,
+#   "locality": "Roeselare",
+#   "subproperty_type": "MIXED_USE_BUILDING",
+#   "total_area_sqm": 0,
+#   "nbr_bedrooms": 0,
+#   "primary_energy_consumption_sqm": 0,
+#   "construction_year": 0,
+#   "fl_garden": True,
+#   "fl_terrace": True,
+#   "fl_swimming_pool": True,
+#   "fl_floodzone": True}
 
-print("this is an update inside ss dev")
+#     prediction = prediction_calculator(dummy)
+#     print("Predicted house price:", prediction)
+
+
+# print("this is an update inside ss dev")
