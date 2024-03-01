@@ -1,6 +1,8 @@
 import json
 import joblib
 import pandas as pd
+import sys
+import os
 
 # json_dummy={"total_area_sqm": 2000, "primary_energy_consumption_sqm":34}
 
@@ -8,7 +10,11 @@ import pandas as pd
 def predict(input_data):
     """Predicts house prices from input data."""
     # Load the trained model
-    artifacts = joblib.load("app/model/artifacts.joblib")
+
+    # this_directory= os.path.dirname('app/model/predict.py')
+    # sys.path.append(os.path.join(this_directory, 'app/model/train.py'))
+
+    artifacts = joblib.load("artifacts.joblib")
     print(artifacts)
     # Prepare the input data
     data = pd.DataFrame(input_data, index=[0])

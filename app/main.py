@@ -67,11 +67,15 @@ def health():
 
 @app.post("/predict")
 def prediction_calculator(input_data: InputData):
+    print(input_data)
+
     try:
         prediction = predict(input_data.dict())
         return {"predicted_price": prediction}
     except Exception as e:
+        print('error in main' + str(e))
         raise HTTPException(status_code=500, detail=str(e))
+    
 
 
 print("this is an update inside ss dev")
