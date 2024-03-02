@@ -91,7 +91,7 @@ def main():
             }
     # Predict button
     if st.button('Predict the property price'):        
-        url = 'http://localhost:8000/predict'
+        url = 'https://immoliza-web-app.onrender.com/predict'
         # Sending None for the fields that are not filled by the user
         for key in input_data.keys():
             if isinstance(input_data[key], str) and not input_data[key].strip():

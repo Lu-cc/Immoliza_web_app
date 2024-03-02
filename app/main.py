@@ -3,7 +3,7 @@ from enum import Enum
 from fastapi import FastAPI, HTTPException
 from typing import Optional
 from pydantic import BaseModel
-from model.predict import predict
+from app.model.predict import predict
 
 app = FastAPI()
 
